@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "840518690848",
+    "firebase_url": "https://nafzly-92cc7.firebaseio.com",
+    "project_id": "nafzly-92cc7",
+    "storage_bucket": "nafzly-92cc7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:840518690848:android:17973397a0f0d79fa63445",
+        "android_client_info": {
+          "package_name": "com.shebo.nafzly"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "840518690848-usn208bt2tdc25cl14r9acu7o6qtn1im.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.shebo.nafzly",
+            "certificate_hash": "038a96fa4d7afc6e6a19b7f07a325ddba7f90d80"
+          }
+        },
+        {
+          "client_id": "840518690848-f0trfuaa50jgmssjgccm9mr2cgtd1bqf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgVf3lgfmDedKNI3ypIPZ-3DyY3sp1UhQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "840518690848-f0trfuaa50jgmssjgccm9mr2cgtd1bqf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

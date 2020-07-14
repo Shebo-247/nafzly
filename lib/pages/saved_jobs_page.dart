@@ -8,6 +8,10 @@ class SavedJobsPage extends StatefulWidget {
 class _SavedJobsPageState extends State<SavedJobsPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      child: Center(
+        child: Text("Saved Jobs Page"),
+      ),
+    );
   }
 }
