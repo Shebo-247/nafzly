@@ -1,9 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:nafzly/custom_widgets/bottom_nav_item.dart';
 import 'package:nafzly/models/navigation.dart';
 import 'package:nafzly/pages/chat_page.dart';
 import 'package:nafzly/pages/jobs_page.dart';
 import 'package:nafzly/pages/saved_jobs_page.dart';
+import 'package:nafzly/utils/constants.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -11,6 +13,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  FirebaseAuth auth;
+  FirebaseUser loggedUser;
 
   List<Widget> navWidgets = [
     JobsPage(),
@@ -25,6 +30,29 @@ class _HomePageState extends State<HomePage> {
     Navigation(title: Text("Chat".toUpperCase()), icon: Icon(Icons.chat)),
     Navigation(title: Text("Saved".toUpperCase()), icon: Icon(Icons.bookmark)),
   ];
+
+  void checkLoggedUser() async{
+    print("Check Loged User");
+    try{
+      final user = await auth.currentUser();
+      if (user != null){
+        loggedUser = user;
+      }else{
+        Navigator.pop(context);
+        Navigator.pushNamed(context, loginPage);
+      }
+    }catch(e){
+      print(e.toString());
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    auth = FirebaseAuth.instance;
+    checkLoggedUser();
+  }
 
   @override
   Widget build(BuildContext context) {
