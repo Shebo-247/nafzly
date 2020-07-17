@@ -85,7 +85,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       TextField(
                         keyboardType: TextInputType.emailAddress,
                         controller: emailController,
-                        onChanged: (value){
+                        onChanged: (value) {
                           email = value;
                         },
                         style: TextStyle(fontSize: 20, color: Colors.white),
@@ -126,9 +126,9 @@ class _SignUpPageState extends State<SignUpPage> {
                         height: 40,
                       ),
                       TextField(
-                        keyboardType: TextInputType.visiblePassword,
+                        obscureText: true,
                         controller: passwordController,
-                        onChanged: (value){
+                        onChanged: (value) {
                           password = value;
                         },
                         style: TextStyle(fontSize: 20, color: Colors.white),
@@ -169,9 +169,9 @@ class _SignUpPageState extends State<SignUpPage> {
                         height: 40,
                       ),
                       TextField(
-                        keyboardType: TextInputType.visiblePassword,
+                        obscureText: true,
                         controller: confirmPasswordController,
-                        onChanged: (value){
+                        onChanged: (value) {
                           confirmPassword = value;
                         },
                         style: TextStyle(fontSize: 20, color: Colors.white),

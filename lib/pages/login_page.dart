@@ -18,9 +18,11 @@ class _LoginPageState extends State<LoginPage> {
 
   void login() {
     if (email != null || password != null) {
-      auth.signInWithEmailAndPassword(email: email, password: password).whenComplete(() {
-            Navigator.pop(context);
-            Navigator.pushNamed(context, homePage);
+      auth
+          .signInWithEmailAndPassword(email: email, password: password)
+          .whenComplete(() {
+        Navigator.pop(context);
+        Navigator.pushNamed(context, homePage);
       });
     } else {
       print('Please fill all fields');
@@ -80,7 +82,7 @@ class _LoginPageState extends State<LoginPage> {
                       TextField(
                         keyboardType: TextInputType.emailAddress,
                         controller: emailController,
-                        onChanged: (value){
+                        onChanged: (value) {
                           email = value;
                         },
                         style: TextStyle(fontSize: 20, color: Colors.white),
@@ -121,9 +123,9 @@ class _LoginPageState extends State<LoginPage> {
                         height: 40,
                       ),
                       TextField(
-                        keyboardType: TextInputType.visiblePassword,
+                        obscureText: true,
                         controller: passwordController,
-                        onChanged: (value){
+                        onChanged: (value) {
                           password = value;
                         },
                         style: TextStyle(fontSize: 20, color: Colors.white),

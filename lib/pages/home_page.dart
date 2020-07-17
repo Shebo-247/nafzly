@@ -4,6 +4,7 @@ import 'package:nafzly/custom_widgets/bottom_nav_item.dart';
 import 'package:nafzly/models/navigation.dart';
 import 'package:nafzly/pages/chat_page.dart';
 import 'package:nafzly/pages/jobs_page.dart';
+import 'package:nafzly/pages/profile_page.dart';
 import 'package:nafzly/pages/saved_jobs_page.dart';
 import 'package:nafzly/utils/constants.dart';
 
@@ -13,14 +14,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   FirebaseAuth auth;
   FirebaseUser loggedUser;
 
   List<Widget> navWidgets = [
     JobsPage(),
     ChatPage(),
-    SavedJobsPage()
+    SavedJobsPage(),
+    ProfilePage(),
   ];
 
   int selectedNavBar = 0;
@@ -29,19 +30,19 @@ class _HomePageState extends State<HomePage> {
     Navigation(title: Text("Jobs".toUpperCase()), icon: Icon(Icons.work)),
     Navigation(title: Text("Chat".toUpperCase()), icon: Icon(Icons.chat)),
     Navigation(title: Text("Saved".toUpperCase()), icon: Icon(Icons.bookmark)),
+    Navigation(title: Text("Profile".toUpperCase()), icon: Icon(Icons.person)),
   ];
 
-  void checkLoggedUser() async{
-    print("Check Loged User");
-    try{
+  void checkLoggedUser() async {
+    try {
       final user = await auth.currentUser();
-      if (user != null){
+      if (user != null) {
         loggedUser = user;
-      }else{
+      } else {
         Navigator.pop(context);
         Navigator.pushNamed(context, loginPage);
       }
-    }catch(e){
+    } catch (e) {
       print(e.toString());
     }
   }
@@ -60,6 +61,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text("Wazfny"),
       ),
+      drawer: _appDrawer(),
       bottomNavigationBar: Container(
         width: double.infinity,
         height: 65,
@@ -84,6 +86,50 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       body: navWidgets[selectedNavBar],
+    );
+  }
+
+  Widget _appDrawer() {
+    return SafeArea(
+      child: Container(
+        width: MediaQuery.of(context).size.width * 0.70,
+        height: MediaQuery.of(context).size.height,
+        color: appTheme.primaryColorDark,
+        child: Column(
+          children: <Widget>[
+            SizedBox(
+              height: 50,
+            ),
+            CircleAvatar(
+              backgroundColor: appTheme.primaryColor,
+              radius: 75,
+            ),
+            Divider(
+              color: appTheme.accentColor,
+              thickness: 1,
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 10, top: 10),
+              child: Row(
+                children: <Widget>[
+                  Icon(
+                    Icons.work,
+                    color: appTheme.primaryColor,
+                    size: 30,
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    'Browse Projects',
+                    style: TextStyle(fontSize: 18, color: appTheme.accentColor),
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }
