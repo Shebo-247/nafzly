@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:nafzly/models/user.dart';
 import 'package:nafzly/utils/constants.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -16,12 +18,36 @@ class _SignUpPageState extends State<SignUpPage> {
 
   String email, password, confirmPassword;
 
+  void initializeUserInfo(userID) {
+    print(userID);
+    User user = User(
+      id: userID,
+      firstName: "",
+      lastName: "",
+      address: "",
+      jobTitle: "",
+      bio: "",
+      image: '',
+    );
+
+    Firestore.instance
+        .collection("Users")
+        .document(userID)
+        .setData(user.toJson())
+        .whenComplete(() => print('User added Successfully !'));
+  }
+
   void signUp() {
     if (email != null || password != null || confirmPassword != null) {
       if (password == confirmPassword) {
         auth
             .createUserWithEmailAndPassword(email: email, password: password)
-            .whenComplete(() {
+            .whenComplete(() async {
+          String userID;
+          final user = await auth.currentUser();
+          user != null ? userID = user.uid : '';
+
+          initializeUserInfo(userID);
           Navigator.pop(context);
           Navigator.pushNamed(context, homePage);
         });
@@ -74,7 +100,8 @@ class _SignUpPageState extends State<SignUpPage> {
                         margin: EdgeInsets.only(top: 50),
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage('assets/images/Wazafny-Logo.png'),
+                            image: AssetImage(
+                                'assets/images/Wazafny-Logo-white.png'),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -94,7 +121,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             Icons.person,
                             color: appTheme.primaryColor,
                           ),
-                          hintText: 'Email or Username',
+                          hintText: 'Email Address',
                           hintStyle: TextStyle(
                             color: Colors.white38,
                             fontSize: 18,

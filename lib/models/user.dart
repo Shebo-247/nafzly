@@ -1,34 +1,37 @@
 class User {
-  String userID,
-      userFirstName,
-      userLastName,
-      userAddress,
-      userProfile,
-      userJobTitle,
-      userBio,
-      userHourRate;
+  String id, firstName, lastName, address, image, jobTitle, bio;
 
   User({
-    this.userID,
-    this.userFirstName,
-    this.userLastName,
-    this.userAddress,
-    this.userProfile,
-    this.userJobTitle,
-    this.userBio,
-    this.userHourRate,
+    this.id,
+    this.firstName,
+    this.lastName,
+    this.address,
+    this.image,
+    this.jobTitle,
+    this.bio,
   });
 
   toJson() {
     return {
-      "userID": this.userID,
-      "userFirstName": this.userFirstName,
-      "userLastName": this.userLastName,
-      "userAddress": this.userAddress,
-      "userProfile": this.userProfile,
-      "userJobTitle": this.userJobTitle,
-      "userBio": this.userBio,
-      "userHourRate": this.userHourRate
+      "id": this.id,
+      "firstName": this.firstName,
+      "lastName": this.lastName,
+      "address": this.address,
+      "image": this.image,
+      "jobTitle": this.jobTitle,
+      "bio": this.bio,
     };
+  }
+
+  factory User.fromJson(Map<dynamic, dynamic> json) {
+    return User(
+      id: json['id'],
+      firstName: json['firstName'],
+      lastName: json['lastName'],
+      address: json['address'],
+      image: json['image'],
+      jobTitle: json['jobTitle'],
+      bio: json['bio'],
+    );
   }
 }

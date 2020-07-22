@@ -7,6 +7,7 @@ import 'package:nafzly/pages/jobs_page.dart';
 import 'package:nafzly/pages/profile_page.dart';
 import 'package:nafzly/pages/saved_jobs_page.dart';
 import 'package:nafzly/utils/constants.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -57,6 +58,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final loggedUser = Provider.of<FirebaseUser>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Wazfny"),
@@ -85,7 +88,7 @@ class _HomePageState extends State<HomePage> {
           }).toList(),
         ),
       ),
-      body: navWidgets[selectedNavBar],
+      body: loggedUser != null ? navWidgets[selectedNavBar] : Container(),
     );
   }
 
@@ -123,10 +126,22 @@ class _HomePageState extends State<HomePage> {
                   Text(
                     'Browse Projects',
                     style: TextStyle(fontSize: 18, color: appTheme.accentColor),
-                  )
+                  ),
                 ],
               ),
-            )
+            ),
+            GestureDetector(
+              onTap: () async {
+                FirebaseAuth auth = FirebaseAuth.instance;
+                await auth.signOut();
+                Navigator.pop(context);
+                Navigator.pushNamed(context, loginPage);
+              },
+              child: Text(
+                'Logout',
+                style: TextStyle(fontSize: 18, color: appTheme.accentColor),
+              ),
+            ),
           ],
         ),
       ),

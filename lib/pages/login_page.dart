@@ -42,12 +42,12 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          color: appTheme.primaryColor,
-        ),
+      body: SingleChildScrollView(
         child: Container(
-          child: SingleChildScrollView(
+          decoration: BoxDecoration(
+            color: appTheme.primaryColor,
+          ),
+          child: Container(
             child: Column(
               children: <Widget>[
                 SizedBox(
@@ -71,7 +71,8 @@ class _LoginPageState extends State<LoginPage> {
                         margin: EdgeInsets.only(top: 50),
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage('assets/images/Wazafny-Logo.png'),
+                            image: AssetImage(
+                                'assets/images/Wazafny-Logo-white.png'),
                             fit: BoxFit.cover,
                           ),
                         ),
