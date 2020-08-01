@@ -8,6 +8,7 @@ const String chatPage = "chatPage";
 const String savedJobsPage = "savedJobsPage";
 const String profilePage = "profilePage";
 const String profileEditingPage = "profileEditingPage";
+const String splashPage = "splashPage";
 
 ThemeData appTheme = ThemeData(
     primaryColor: Color(0xFFE8E80F),

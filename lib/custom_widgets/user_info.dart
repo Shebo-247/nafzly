@@ -1,19 +1,21 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:nafzly/custom_widgets/saved_job_icon.dart';
-import 'package:nafzly/models/user.dart';
+import 'package:nafzly/models/freelancer_model.dart';
 import 'package:nafzly/utils/constants.dart';
 
-Widget userInfo(jobOwnerID, jobID, loggedUserID) {
-  //print('owner : $jobOwnerID');
+Widget clientInfo(jobClientID, jobID, loggedUserID) {
+  print('owner : $jobClientID');
   return StreamBuilder(
-    stream:
-        Firestore.instance.collection("Users").document(jobOwnerID).snapshots(),
+    stream: Firestore.instance
+        .collection("Clients")
+        .document(jobClientID)
+        .snapshots(),
     builder: (context, snapshot) {
       if (!snapshot.hasData) return Container();
 
       // get info of jobOwner
-      User user = User.fromJson(snapshot.data.data);
+      Freelancer user = Freelancer.fromJson(snapshot.data.data);
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[

@@ -1,8 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:nafzly/models/user.dart';
+import 'package:nafzly/models/freelancer_model.dart';
 import 'package:nafzly/utils/constants.dart';
+import 'package:toast/toast.dart';
 
 class SignUpPage extends StatefulWidget {
   @override
@@ -18,10 +19,10 @@ class _SignUpPageState extends State<SignUpPage> {
 
   String email, password, confirmPassword;
 
-  void initializeUserInfo(userID) {
-    print(userID);
-    User user = User(
-      id: userID,
+  void initializeUserInfo(freelancerID) {
+    print(freelancerID);
+    Freelancer freelancer = Freelancer(
+      id: freelancerID,
       firstName: "",
       lastName: "",
       address: "",
@@ -31,10 +32,15 @@ class _SignUpPageState extends State<SignUpPage> {
     );
 
     Firestore.instance
-        .collection("Users")
-        .document(userID)
-        .setData(user.toJson())
-        .whenComplete(() => print('User added Successfully !'));
+        .collection("Freelancers")
+        .document(freelancerID)
+        .setData(freelancer.toJson())
+        .whenComplete(() => Toast.show(
+              'Freelancer added Successfully !',
+              context,
+              gravity: Toast.BOTTOM,
+              duration: Toast.LENGTH_LONG,
+            ));
   }
 
   void signUp() {

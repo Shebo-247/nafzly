@@ -11,7 +11,7 @@ Widget jobCard(job, loggedUserID) {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          userInfo(job.ownerID, job.id, loggedUserID),
+          clientInfo(job.clientID, job.id, loggedUserID),
           SizedBox(height: 10),
           Text(
             job.title,

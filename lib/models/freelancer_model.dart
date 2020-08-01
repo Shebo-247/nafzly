@@ -1,7 +1,7 @@
-class User {
+class Freelancer {
   String id, firstName, lastName, address, image, jobTitle, bio;
 
-  User({
+  Freelancer({
     this.id,
     this.firstName,
     this.lastName,
@@ -23,8 +23,8 @@ class User {
     };
   }
 
-  factory User.fromJson(Map<dynamic, dynamic> json) {
-    return User(
+  factory Freelancer.fromJson(Map<dynamic, dynamic> json) {
+    return Freelancer(
       id: json['id'],
       firstName: json['firstName'],
       lastName: json['lastName'],

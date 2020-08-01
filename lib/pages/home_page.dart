@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
         loggedUser = user;
       } else {
         Navigator.pop(context);
-        Navigator.pushNamed(context, loginPage);
+        Navigator.pushNamed(context, splashPage);
       }
     } catch (e) {
       print(e.toString());
@@ -135,7 +135,7 @@ class _HomePageState extends State<HomePage> {
                 FirebaseAuth auth = FirebaseAuth.instance;
                 await auth.signOut();
                 Navigator.pop(context);
-                Navigator.pushNamed(context, loginPage);
+                Navigator.pushNamed(context, splashPage);
               },
               child: Text(
                 'Logout',

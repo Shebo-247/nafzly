@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:nafzly/models/user.dart';
+import 'package:nafzly/models/freelancer_model.dart';
 import 'package:nafzly/utils/constants.dart';
 import 'package:provider/provider.dart';
 
@@ -52,7 +52,10 @@ class _ProfileEditingPageState extends State<ProfileEditingPage> {
         addressController.value.text != null ||
         jobTitleController.value.text != null ||
         bioController.value.text != null) {
-      Firestore.instance.collection("Users").document(loggedUserID).updateData({
+      Firestore.instance
+          .collection("Freelancers")
+          .document(loggedUserID)
+          .updateData({
         'firstName': firstNameController.value.text,
         'lastName': lastNameController.value.text,
         'address': addressController.value.text,
@@ -71,11 +74,11 @@ class _ProfileEditingPageState extends State<ProfileEditingPage> {
     String loggedUserID = loggedUser.uid;
 
     Firestore.instance
-        .collection("Users")
+        .collection("Freelancers")
         .document(loggedUserID)
         .get()
         .then((snapshot) {
-      User user = User.fromJson(snapshot.data);
+      Freelancer user = Freelancer.fromJson(snapshot.data);
       firstNameController.text = user.firstName;
       lastNameController.text = user.lastName;
       addressController.text = user.address;

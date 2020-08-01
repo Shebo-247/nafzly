@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nafzly/custom_widgets/job_card.dart';
 import 'package:nafzly/models/job_model.dart';
+import 'package:nafzly/pages/job_review_page.dart';
 import 'package:provider/provider.dart';
 
 class JobsPage extends StatefulWidget {
@@ -42,7 +42,14 @@ class _JobsPageState extends State<JobsPage> {
               Job job = Job.fromJson(data);
 
               return GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => JobReviewPage(job: job),
+                    ),
+                  );
+                },
                 child: Container(
                   margin: EdgeInsets.only(bottom: 10),
                   child: jobCard(job, loggedUser.uid),

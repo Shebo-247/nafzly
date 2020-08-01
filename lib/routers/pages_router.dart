@@ -8,6 +8,7 @@ import 'package:nafzly/pages/profile_editing_page.dart';
 import 'package:nafzly/pages/profile_page.dart';
 import 'package:nafzly/pages/saved_jobs_page.dart';
 import 'package:nafzly/pages/signup_page.dart';
+import 'package:nafzly/pages/splash_page.dart';
 import 'package:nafzly/utils/constants.dart';
 
 class PagesRouter {
@@ -36,6 +37,9 @@ class PagesRouter {
         break;
       case profileEditingPage:
         return MaterialPageRoute(builder: (context) => ProfileEditingPage());
+        break;
+      case splashPage:
+        return MaterialPageRoute(builder: (context) => SplashPage());
         break;
     }
 

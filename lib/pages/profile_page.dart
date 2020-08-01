@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:nafzly/custom_widgets/profile_item.dart';
-import 'package:nafzly/models/user.dart';
+import 'package:nafzly/models/freelancer_model.dart';
 import 'package:nafzly/utils/constants.dart';
 import 'package:provider/provider.dart';
 
@@ -25,16 +25,17 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final loggedUser = Provider.of<FirebaseUser>(context);
+    print(loggedUser.uid);
 
     return StreamBuilder(
       stream: Firestore.instance
-          .collection("Users")
+          .collection("Freelancers")
           .document(loggedUser.uid)
           .snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) return Container();
 
-        User currentUser = User.fromJson(snapshot.data.data);
+        Freelancer currentUser = Freelancer.fromJson(snapshot.data.data);
         return Container(
           width: double.infinity,
           child: SingleChildScrollView(
